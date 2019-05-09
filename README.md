@@ -12,16 +12,16 @@ Please cite SSD in your publications if it helps your research:
     }
     
 ### 功能
-mobilenetv1-ssd [来源](https://github.com/chuanqi305/MobileNet-SSD)
-mobilenetv2-ssd [来源](https://github.com/chuanqi305/MobileNetv2-SSDLite/tree/master/ssd)
-mobilenetv2-ssdlite [来源](https://github.com/chuanqi305/MobileNetv2-SSDLite/tree/master/ssdlite)
-FocalLoss [来源](https://github.com/chuanqi305/FocalLoss)
+mobilenetv1-ssd [来源](https://github.com/chuanqi305/MobileNet-SSD)  
+mobilenetv2-ssd [来源](https://github.com/chuanqi305/MobileNetv2-SSDLite/tree/master/ssd)  
+mobilenetv2-ssdlite [来源](https://github.com/chuanqi305/MobileNetv2-SSDLite/tree/master/ssdlite)  
+FocalLoss [来源](https://github.com/chuanqi305/FocalLoss)  
 
 
 ### Contents
 1. [FocalLoss](#FocalLoss)
 2. [mobilenetv1-ssd](#mobilenetv1-ssd)
-3. [mobilenetv2-ssd/ssdlite](#mobilenetv2-ssd/ssdlite)
+3. [mobilenetv2-ssd(ssdlite)](#mobilenetv2-ssd(ssdlite))
 
 # FocalLoss
 Caffe implementation of FAIR paper "Focal Loss for Dense Object Detection" for SSD.
@@ -104,7 +104,7 @@ There are 2 primary differences between this model and [MobileNet-SSD on tensorf
 ### Reproduce the result
 I trained this model from a MobileNet classifier([caffemodel](https://drive.google.com/open?id=0B3gersZ2cHIxZi13UWF0OXBsZzA) and [prototxt](https://drive.google.com/open?id=0B3gersZ2cHIxWGEzbG5nSXpNQzA)) converted from [tensorflow](http://download.tensorflow.org/models/mobilenet_v1_1.0_224_2017_06_14.tar.gz). I first trained the model on MS-COCO and then fine-tuned on VOC0712. Without MS-COCO pretraining, it can only get mAP=0.68.
 
-# mobilenetv2-ssd/ssdlite
+# mobilenetv2-ssd(ssdlite)
 Caffe implementation of SSD detection on MobileNetv2, converted from tensorflow.
 
 ### Prerequisites
