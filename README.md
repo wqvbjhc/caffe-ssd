@@ -1,24 +1,31 @@
 # Caffe-SSD
-支持ssd的caffe
-### Citing SSD
+caffe & ssd   
+# License and Citation
 
-Please cite SSD in your publications if it helps your research:
+Please cite Caffe, SSD in your publications if it helps your research:
 
     @inproceedings{liu2016ssd,
       title = {{SSD}: Single Shot MultiBox Detector},
       author = {Liu, Wei and Anguelov, Dragomir and Erhan, Dumitru and Szegedy, Christian and Reed, Scott and Fu, Cheng-Yang and Berg, Alexander C.},
       booktitle = {ECCV},
       year = {2016}
+    }  
+	
+    @article{jia2014caffe,
+      Author = {Jia, Yangqing and Shelhamer, Evan and Donahue, Jeff and Karayev, Sergey and Long, Jonathan and Girshick, Ross and Guadarrama, Sergio and Darrell, Trevor},
+      Journal = {arXiv preprint arXiv:1408.5093},
+      Title = {Caffe: Convolutional Architecture for Fast Feature Embedding},
+      Year = {2014}
     }
-    
-### 功能
-mobilenetv1-ssd [来源](https://github.com/chuanqi305/MobileNet-SSD)  
-mobilenetv2-ssd [来源](https://github.com/chuanqi305/MobileNetv2-SSDLite/tree/master/ssd)  
-mobilenetv2-ssdlite [来源](https://github.com/chuanqi305/MobileNetv2-SSDLite/tree/master/ssdlite)  
-FocalLoss [来源](https://github.com/chuanqi305/FocalLoss)  
-DepthwiseConvolution [来源](https://github.com/yonghenglh6/DepthwiseConvolution)  
+	
+# Resources
+mobilenetv1-ssd [Ref](https://github.com/chuanqi305/MobileNet-SSD)  
+mobilenetv2-ssd [Ref](https://github.com/chuanqi305/MobileNetv2-SSDLite/tree/master/ssd)  
+mobilenetv2-ssdlite [Ref](https://github.com/chuanqi305/MobileNetv2-SSDLite/tree/master/ssdlite)  
+FocalLoss [Ref](https://github.com/chuanqi305/FocalLoss)  
+DepthwiseConvolution [Ref](https://github.com/yonghenglh6/DepthwiseConvolution)  
 
-### Contents
+# Contents
 1. [FocalLoss](#FocalLoss)
 2. [mobilenetv1-ssd](#mobilenetv1-ssd)
 3. [mobilenetv2-ssd(ssdlite)](#mobilenetv2-ssd ssdlite)
