@@ -24,12 +24,14 @@ mobilenetv2-ssd [Ref](https://github.com/chuanqi305/MobileNetv2-SSDLite/tree/mas
 mobilenetv2-ssdlite [Ref](https://github.com/chuanqi305/MobileNetv2-SSDLite/tree/master/ssdlite)  
 FocalLoss [Ref](https://github.com/chuanqi305/FocalLoss)  
 DepthwiseConvolution [Ref](https://github.com/yonghenglh6/DepthwiseConvolution)  
+ShuffleNet [Ref](https://github.com/farmingyard/ShuffleNet)  
 
 # Contents
 1. [FocalLoss](#FocalLoss)
 2. [mobilenetv1-ssd](#mobilenetv1-ssd)
 3. [mobilenetv2-ssd(ssdlite)](#mobilenetv2-ssd ssdlite)
 4. [DepthwiseConvolution](#DepthwiseConvolution)
+5. [ShuffleNet](#ShuffleNet)
 
 # FocalLoss
 Caffe implementation of FAIR paper "Focal Loss for Dense Object Detection" for SSD.
@@ -148,3 +150,25 @@ There are some differences between caffe and tensorflow implementation:
 
 # DepthwiseConvolution
 Replacing the type of mobile convolution layer with "DepthwiseConvolution" is all.   
+
+# ShuffleNet
+This is caffe implementation of ShuffleNet, For details, please read the original paper:  
+["ShuffleNet: An Extremely Efficient Convolutional
+Neural Network for Mobile Devices" by Xiangyu Zhang et. al. 2017](https://arxiv.org/pdf/1707.01083.pdf).
+This code is based on camel007's implementation(https://github.com/camel007/Caffe-ShuffleNet), but I recode the cuda file for acceleration.
+
+#### Update: add caffe deploy file of shufflenet v2 1x.
+
+## How to use?
+#### caffe.proto:
+```
+message LayerParameter {
+...
+optional ShuffleChannelParameter shuffle_channel_param = 164;
+...
+}
+...
+message ShuffleChannelParameter {
+  optional uint32 group = 1[default = 1]; // The number of group
+}
+```
