@@ -146,7 +146,7 @@ layer {
 }
 layer {
   name: "resx1_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "resx1_conv1"
   top: "resx1_conv2"
   convolution_param {
@@ -323,7 +323,7 @@ layer {
 }
 layer {
   name: "resx2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle2"
   top: "resx2_conv2"
   convolution_param {
@@ -503,7 +503,7 @@ layer {
 }
 layer {
   name: "resx3_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle3"
   top: "resx3_conv2"
   convolution_param {
@@ -683,7 +683,7 @@ layer {
 }
 layer {
   name: "resx4_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle4"
   top: "resx4_conv2"
   convolution_param {
@@ -874,7 +874,7 @@ layer {
 }
 layer {
   name: "resx5_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle5"
   top: "resx5_conv2"
   convolution_param {
@@ -1051,7 +1051,7 @@ layer {
 }
 layer {
   name: "resx6_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle6"
   top: "resx6_conv2"
   convolution_param {
@@ -1231,7 +1231,7 @@ layer {
 }
 layer {
   name: "resx7_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle7"
   top: "resx7_conv2"
   convolution_param {
@@ -1411,7 +1411,7 @@ layer {
 }
 layer {
   name: "resx8_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle8"
   top: "resx8_conv2"
   convolution_param {
@@ -1591,7 +1591,7 @@ layer {
 }
 layer {
   name: "resx9_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle9"
   top: "resx9_conv2"
   convolution_param {
@@ -1771,7 +1771,7 @@ layer {
 }
 layer {
   name: "resx10_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle10"
   top: "resx10_conv2"
   convolution_param {
@@ -1951,7 +1951,7 @@ layer {
 }
 layer {
   name: "resx11_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle11"
   top: "resx11_conv2"
   convolution_param {
@@ -2131,7 +2131,7 @@ layer {
 }
 layer {
   name: "resx12_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle12"
   top: "resx12_conv2"
   convolution_param {
@@ -2322,7 +2322,7 @@ layer {
 }
 layer {
   name: "resx13_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle13"
   top: "resx13_conv2"
   convolution_param {
@@ -2499,7 +2499,7 @@ layer {
 }
 layer {
   name: "resx14_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle14"
   top: "resx14_conv2"
   convolution_param {
@@ -2679,7 +2679,7 @@ layer {
 }
 layer {
   name: "resx15_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle15"
   top: "resx15_conv2"
   convolution_param {
@@ -2859,7 +2859,7 @@ layer {
 }
 layer {
   name: "resx16_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle16"
   top: "resx16_conv2"
   convolution_param {

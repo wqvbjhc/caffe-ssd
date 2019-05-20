@@ -74,7 +74,7 @@ layer {
 }
 layer {
   name: "branch1_1_conv1"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "pool1"
   top: "branch1_1_conv1"
   convolution_param {
@@ -233,7 +233,7 @@ layer {
 }
 layer {
   name: "branch1_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch1_2_conv1"
   top: "branch1_2_conv2"
   convolution_param {
@@ -419,7 +419,7 @@ layer {
 }
 layer {
   name: "branch2_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch2_2_conv1"
   top: "branch2_2_conv2"
   convolution_param {
@@ -605,7 +605,7 @@ layer {
 }
 layer {
   name: "branch3_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch3_2_conv1"
   top: "branch3_2_conv2"
   convolution_param {
@@ -791,7 +791,7 @@ layer {
 }
 layer {
   name: "branch4_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch4_2_conv1"
   top: "branch4_2_conv2"
   convolution_param {
@@ -911,7 +911,7 @@ layer {
 }
 layer {
   name: "branch5_1_conv1"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle4"
   top: "branch5_1_conv1"
   convolution_param {
@@ -1070,7 +1070,7 @@ layer {
 }
 layer {
   name: "branch5_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch5_2_conv1"
   top: "branch5_2_conv2"
   convolution_param {
@@ -1256,7 +1256,7 @@ layer {
 }
 layer {
   name: "branch6_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch6_2_conv1"
   top: "branch6_2_conv2"
   convolution_param {
@@ -1442,7 +1442,7 @@ layer {
 }
 layer {
   name: "branch7_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch7_2_conv1"
   top: "branch7_2_conv2"
   convolution_param {
@@ -1628,7 +1628,7 @@ layer {
 }
 layer {
   name: "branch8_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch8_2_conv1"
   top: "branch8_2_conv2"
   convolution_param {
@@ -1814,7 +1814,7 @@ layer {
 }
 layer {
   name: "branch9_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch9_2_conv1"
   top: "branch9_2_conv2"
   convolution_param {
@@ -2000,7 +2000,7 @@ layer {
 }
 layer {
   name: "branch10_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch10_2_conv1"
   top: "branch10_2_conv2"
   convolution_param {
@@ -2186,7 +2186,7 @@ layer {
 }
 layer {
   name: "branch11_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch11_2_conv1"
   top: "branch11_2_conv2"
   convolution_param {
@@ -2372,7 +2372,7 @@ layer {
 }
 layer {
   name: "branch12_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch12_2_conv1"
   top: "branch12_2_conv2"
   convolution_param {
@@ -2492,7 +2492,7 @@ layer {
 }
 layer {
   name: "branch13_1_conv1"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "shuffle12"
   top: "branch13_1_conv1"
   convolution_param {
@@ -2651,7 +2651,7 @@ layer {
 }
 layer {
   name: "branch13_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch13_2_conv1"
   top: "branch13_2_conv2"
   convolution_param {
@@ -2837,7 +2837,7 @@ layer {
 }
 layer {
   name: "branch14_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch14_2_conv1"
   top: "branch14_2_conv2"
   convolution_param {
@@ -3023,7 +3023,7 @@ layer {
 }
 layer {
   name: "branch15_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch15_2_conv1"
   top: "branch15_2_conv2"
   convolution_param {
@@ -3209,7 +3209,7 @@ layer {
 }
 layer {
   name: "branch16_2_conv2"
-  type: "ConvolutionDepthwise"
+  type: "DepthwiseConvolution"
   bottom: "branch16_2_conv1"
   top: "branch16_2_conv2"
   convolution_param {
