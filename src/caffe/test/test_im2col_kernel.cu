@@ -20,7 +20,8 @@ __global__ void im2col_gpu_kernel(const int n, const Dtype* data_im,
     const int stride_h, const int stride_w,
     const int dilation_h, const int dilation_w,
     const int height_col, const int width_col,
-    Dtype* data_col);
+    Dtype* data_col,
+    const bool pad_only_bottom, const bool pad_only_right);
 
 template <typename Dtype, int num_axes>
 __global__ void im2col_nd_gpu_kernel(const int n, const Dtype* data_im,
@@ -139,7 +140,7 @@ TYPED_TEST(Im2colKernelTest, Test2D) {
         this->pad_, this->pad_, this->stride_, this->stride_,
         this->dilation_, this->dilation_,
         this->height_col_, this->width_col_,
-        top_data + this->blob_top_->offset(n));
+        top_data + this->blob_top_->offset(n), false, false);
       CUDA_POST_KERNEL_CHECK;
     }
 

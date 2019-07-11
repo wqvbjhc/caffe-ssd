@@ -146,9 +146,11 @@ void DevicePair::compute(const vector<int> devices, vector<DevicePair>* pairs) {
   DLOG(INFO) << "GPUs paired by boards, remaining: " << s.str();
 
   // Group by P2P accessibility
-  remaining_depth = ceil(log2(remaining.size()));
-  for (int d = 0; d < remaining_depth; ++d) {
-    for (int i = 0; i < remaining.size(); ++i) {
+  // remaining_depth = ceil(log2(remaining.size()));
+  // for (int d = 0; d < remaining_depth; ++d) {
+  //   for (int i = 0; i < remaining.size(); ++i) {
+  while (remaining.size() > 1) {
+    for (int i = 0; i+1 < remaining.size(); ++i) {
       for (int j = i + 1; j < remaining.size(); ++j) {
         int access;
         CUDA_CHECK(
