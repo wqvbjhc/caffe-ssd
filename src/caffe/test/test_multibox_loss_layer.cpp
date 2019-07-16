@@ -68,6 +68,9 @@ class MultiBoxLossLayerTest : public MultiDeviceTest<TypeParam> {
                 num_, num_priors_ * num_classes_, 1, 1)),
         blob_bottom_prior_(new Blob<Dtype>(num_, 2, num_priors_ * 4, 1)),
         blob_bottom_gt_(new Blob<Dtype>(1, 1, 4, 8)),
+#ifdef USE_LMDB
+        anno_data_layer(NULL),
+#endif
         blob_top_loss_(new Blob<Dtype>()) {
     blob_bottom_vec_.push_back(blob_bottom_loc_);
     blob_bottom_vec_.push_back(blob_bottom_conf_);
@@ -76,6 +79,12 @@ class MultiBoxLossLayerTest : public MultiDeviceTest<TypeParam> {
     blob_top_vec_.push_back(blob_top_loss_);
   }
   virtual ~MultiBoxLossLayerTest() {
+#ifdef USE_LMDB
+    if(anno_data_layer){
+      delete anno_data_layer;
+      anno_data_layer = NULL;
+    }
+#endif
     delete blob_bottom_prior_;
     delete blob_bottom_loc_;
     delete blob_bottom_conf_;
@@ -174,12 +183,15 @@ class MultiBoxLossLayerTest : public MultiDeviceTest<TypeParam> {
     data_param->set_batch_size(num_);
     data_param->set_source(filename.c_str());
     data_param->set_backend(backend);
-    AnnotatedDataLayer<Dtype> anno_data_layer(layer_param);
+    if(!anno_data_layer){
+      delete anno_data_layer;
+    }
+    anno_data_layer = new AnnotatedDataLayer<Dtype>(layer_param);
     fake_top_vec.clear();
     fake_top_vec.push_back(fake_input);
     fake_top_vec.push_back(blob_bottom_gt_);
-    anno_data_layer.SetUp(fake_bottom_vec, fake_top_vec);
-    anno_data_layer.Forward(fake_bottom_vec, fake_top_vec);
+    anno_data_layer->SetUp(fake_bottom_vec, fake_top_vec);
+    anno_data_layer->Forward(fake_bottom_vec, fake_top_vec);
 #else
     FillerParameter filler_param;
     GaussianFiller<Dtype> filler(filler_param);
@@ -322,6 +334,9 @@ class MultiBoxLossLayerTest : public MultiDeviceTest<TypeParam> {
   Blob<Dtype>* const blob_top_loss_;
   vector<Blob<Dtype>*> blob_bottom_vec_;
   vector<Blob<Dtype>*> blob_top_vec_;
+#ifdef USE_LMDB
+  AnnotatedDataLayer<Dtype> *anno_data_layer;
+#endif
 };
 
 TYPED_TEST_CASE(MultiBoxLossLayerTest, TestDtypesAndDevices);
