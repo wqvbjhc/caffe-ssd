@@ -1,4 +1,3 @@
-#include <boost/thread.hpp>
 #include "caffe/layer.hpp"
 
 namespace caffe {

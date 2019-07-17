@@ -75,6 +75,8 @@ void Solver<Dtype>::Init(const SolverParameter& param) {
   current_step_ = 0;
 }
 
+// Load weights from the caffemodel(s) specified in "weights" solver parameter
+// into the train and test nets.
 template <typename Dtype>
 void LoadNetWeights(shared_ptr<Net<Dtype> > net,
     const std::string& model_list) {
@@ -592,7 +594,7 @@ void Solver<Dtype>::CheckSnapshotWritePermissions() {
     } else {
       LOG(FATAL) << "Cannot write to snapshot prefix '"
           << param_.snapshot_prefix() << "'.  Make sure "
-          << "that the directory exists and is writeable.";
+          << "that the directory exists and is writable.";
     }
   }
 }
