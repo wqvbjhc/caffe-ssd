@@ -1,3 +1,4 @@
+#ifdef USE_HDF5
 #include <string>
 #include <vector>
 
@@ -70,7 +71,7 @@ TYPED_TEST(HDF5DataLayerTest, TestRead) {
   int height = 6;
   int width = 5;
 
-  // Test that the layer setup got the correct parameters.
+  // Test that the layer setup gives correct parameters.
   HDF5DataLayer<Dtype> layer(param);
   layer.SetUp(this->blob_bottom_vec_, this->blob_top_vec_);
   EXPECT_EQ(this->blob_top_data_->num(), batch_size);
@@ -164,3 +165,4 @@ TYPED_TEST(HDF5DataLayerTest, TestSkip) {
 }
 
 }  // namespace caffe
+#endif  // USE_HDF5

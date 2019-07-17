@@ -464,6 +464,14 @@ BOOST_PYTHON_MODULE(_caffe) {
     .add_property("count",    static_cast<int (Blob<Dtype>::*)() const>(
         &Blob<Dtype>::count))
     .def("reshape",           bp::raw_function(&Blob_Reshape))
+#ifndef CPU_ONLY
+    .add_property("_gpu_data_ptr",
+        reinterpret_cast<uintptr_t (Blob<Dtype>::*)()>(
+          &Blob<Dtype>::mutable_gpu_data))
+    .add_property("_gpu_diff_ptr",
+        reinterpret_cast<uintptr_t (Blob<Dtype>::*)()>(
+          &Blob<Dtype>::mutable_gpu_diff))
+#endif
     .add_property("data",     bp::make_function(&Blob<Dtype>::mutable_cpu_data,
           NdarrayCallPolicies()))
     .add_property("diff",     bp::make_function(&Blob<Dtype>::mutable_cpu_diff,
@@ -508,20 +516,21 @@ BOOST_PYTHON_MODULE(_caffe) {
 
   bp::class_<SGDSolver<Dtype>, bp::bases<Solver<Dtype> >,
     shared_ptr<SGDSolver<Dtype> >, boost::noncopyable>(
-        "SGDSolver", bp::init<string>());
-  bp::class_<NesterovSolver<Dtype>, bp::bases<Solver<Dtype> >,
+        "SGDSolver", bp::init<string>())
+        .add_property("lr", &SGDSolver<Dtype>::GetLearningRate);
+  bp::class_<NesterovSolver<Dtype>, bp::bases<SGDSolver<Dtype> >,
     shared_ptr<NesterovSolver<Dtype> >, boost::noncopyable>(
         "NesterovSolver", bp::init<string>());
-  bp::class_<AdaGradSolver<Dtype>, bp::bases<Solver<Dtype> >,
+  bp::class_<AdaGradSolver<Dtype>, bp::bases<SGDSolver<Dtype> >,
     shared_ptr<AdaGradSolver<Dtype> >, boost::noncopyable>(
         "AdaGradSolver", bp::init<string>());
-  bp::class_<RMSPropSolver<Dtype>, bp::bases<Solver<Dtype> >,
+  bp::class_<RMSPropSolver<Dtype>, bp::bases<SGDSolver<Dtype> >,
     shared_ptr<RMSPropSolver<Dtype> >, boost::noncopyable>(
         "RMSPropSolver", bp::init<string>());
-  bp::class_<AdaDeltaSolver<Dtype>, bp::bases<Solver<Dtype> >,
+  bp::class_<AdaDeltaSolver<Dtype>, bp::bases<SGDSolver<Dtype> >,
     shared_ptr<AdaDeltaSolver<Dtype> >, boost::noncopyable>(
         "AdaDeltaSolver", bp::init<string>());
-  bp::class_<AdamSolver<Dtype>, bp::bases<Solver<Dtype> >,
+  bp::class_<AdamSolver<Dtype>, bp::bases<SGDSolver<Dtype> >,
     shared_ptr<AdamSolver<Dtype> >, boost::noncopyable>(
         "AdamSolver", bp::init<string>());
 

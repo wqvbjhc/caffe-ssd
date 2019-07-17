@@ -31,12 +31,16 @@ Dtype SGDSolver<Dtype>::GetLearningRate() {
   if (lr_policy == "fixed") {
     rate = this->param_.base_lr();
   } else if (lr_policy == "step") {
+    CHECK_GT(this->param_.stepsize(), 0);
     this->current_step_ = this->iter_ / this->param_.stepsize();
+    CHECK_GE(this->param_.gamma(), 0);
     rate = this->param_.base_lr() *
         pow(this->param_.gamma(), this->current_step_);
   } else if (lr_policy == "exp") {
+    CHECK_GE(this->param_.gamma(), 0);
     rate = this->param_.base_lr() * pow(this->param_.gamma(), this->iter_);
   } else if (lr_policy == "inv") {
+    CHECK_GE(this->param_.gamma(), 0);
     rate = this->param_.base_lr() *
         pow(Dtype(1) + this->param_.gamma() * this->iter_,
             - this->param_.power());
@@ -47,6 +51,7 @@ Dtype SGDSolver<Dtype>::GetLearningRate() {
       LOG(INFO) << "MultiStep Status: Iteration " <<
       this->iter_ << ", step = " << this->current_step_;
     }
+    CHECK_GE(this->param_.gamma(), 0);
     rate = this->param_.base_lr() *
         pow(this->param_.gamma(), this->current_step_);
   } else if (lr_policy == "poly") {
@@ -54,6 +59,8 @@ Dtype SGDSolver<Dtype>::GetLearningRate() {
         (Dtype(this->iter_) / Dtype(this->param_.max_iter())),
         this->param_.power());
   } else if (lr_policy == "sigmoid") {
+    CHECK_GE(this->param_.gamma(), 0);
+    CHECK_GT(this->param_.stepsize(), 0);
     rate = this->param_.base_lr() * (Dtype(1.) /
         (Dtype(1.) + exp(-this->param_.gamma() * (Dtype(this->iter_) -
           Dtype(this->param_.stepsize())))));
@@ -312,6 +319,8 @@ void SGDSolver<Dtype>::SnapshotSolverStateToBinaryProto(
 template <typename Dtype>
 void SGDSolver<Dtype>::SnapshotSolverStateToHDF5(
     const string& model_filename) {
+// This code is taken from https://github.com/sh1r0/caffe-android-lib
+#ifdef USE_HDF5
   string snapshot_filename =
       Solver<Dtype>::SnapshotFilename(".solverstate.h5");
   LOG(INFO) << "Snapshotting solver state to HDF5 file " << snapshot_filename;
@@ -322,8 +331,6 @@ void SGDSolver<Dtype>::SnapshotSolverStateToHDF5(
   hdf5_save_int(file_hid, "iter", this->iter_);
   hdf5_save_string(file_hid, "learned_net", model_filename);
   hdf5_save_int(file_hid, "current_step", this->current_step_);
-  hdf5_save_int(file_hid, "iter_last_event", this->iter_last_event_);
-  hdf5_save_float<Dtype>(file_hid, "minimum_loss", this->minimum_loss_);
   hid_t history_hid = H5Gcreate2(file_hid, "history", H5P_DEFAULT, H5P_DEFAULT,
       H5P_DEFAULT);
   CHECK_GE(history_hid, 0)
@@ -335,6 +342,11 @@ void SGDSolver<Dtype>::SnapshotSolverStateToHDF5(
   }
   H5Gclose(history_hid);
   H5Fclose(file_hid);
+// This code is taken from https://github.com/sh1r0/caffe-android-lib
+#else
+  LOG(FATAL) << "SnapshotSolverStateToHDF5 requires hdf5;"
+             << " compile with USE_HDF5.";
+#endif  // USE_HDF5
 }
 
 template <typename Dtype>
@@ -361,6 +373,7 @@ void SGDSolver<Dtype>::RestoreSolverStateFromBinaryProto(
 
 template <typename Dtype>
 void SGDSolver<Dtype>::RestoreSolverStateFromHDF5(const string& state_file) {
+#ifdef USE_HDF5
   hid_t file_hid = H5Fopen(state_file.c_str(), H5F_ACC_RDONLY, H5P_DEFAULT);
   CHECK_GE(file_hid, 0) << "Couldn't open solver state file " << state_file;
   this->iter_ = hdf5_load_int(file_hid, "iter");
@@ -369,8 +382,6 @@ void SGDSolver<Dtype>::RestoreSolverStateFromHDF5(const string& state_file) {
     this->net_->CopyTrainedLayersFrom(learned_net);
   }
   this->current_step_ = hdf5_load_int(file_hid, "current_step");
-  this->iter_last_event_ = hdf5_load_int(file_hid, "iter_last_event");
-  this->minimum_loss_ = hdf5_load_float<Dtype>(file_hid, "minimum_loss");
   hid_t history_hid = H5Gopen2(file_hid, "history", H5P_DEFAULT);
   CHECK_GE(history_hid, 0) << "Error reading history from " << state_file;
   int state_history_size = hdf5_get_num_links(history_hid);
@@ -384,6 +395,10 @@ void SGDSolver<Dtype>::RestoreSolverStateFromHDF5(const string& state_file) {
   }
   H5Gclose(history_hid);
   H5Fclose(file_hid);
+#else
+  LOG(FATAL) << "RestoreSolverStateFromHDF5 requires hdf5;"
+             << " compile with USE_HDF5.";
+#endif  // USE_HDF5
 }
 
 INSTANTIATE_CLASS(SGDSolver);

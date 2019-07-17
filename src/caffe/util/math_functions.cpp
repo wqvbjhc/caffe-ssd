@@ -37,7 +37,7 @@ void caffe_cpu_gemv<float>(const CBLAS_TRANSPOSE TransA, const int M,
     const float beta, float* y) {
   cblas_sgemv(CblasRowMajor, TransA, M, N, alpha, A, N, x, 1, beta, y, 1);
 }
- 
+
 template <>
 void caffe_cpu_gemv<double>(const CBLAS_TRANSPOSE TransA, const int M,
     const int N, const double alpha, const double* A, const double* x,
