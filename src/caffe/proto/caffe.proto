@@ -450,7 +450,7 @@ message ParamSpec {
 // NOTE
 // Update the next available ID when you add a new LayerParameter field.
 //
-// LayerParameter next available layer-specific ID: 151 (last added: SwishParameter)
+// LayerParameter next available layer-specific ID: 152 (last added: WingLossParameter)
 message LayerParameter {
   optional string name = 1; // the layer name
   optional string type = 2; // the layer type
@@ -560,6 +560,7 @@ message LayerParameter {
   optional WindowDataParameter window_data_param = 129;
   optional FocalLossParameter focal_loss_param = 147;
   optional ShuffleChannelParameter shuffle_channel_param = 148;
+  optional WingLossParameter wing_loss_param = 151;
 }
 
 // Message that stores parameters used to apply transformation
@@ -1716,6 +1717,11 @@ message FocalLossParameter {
 
 message ShuffleChannelParameter {
   optional uint32 group = 1[default = 1]; // The number of group
+}
+
+message WingLossParameter {
+   optional float w = 1 [default = 10];
+   optional float epsilon = 2 [default = 2];
 }
 
 message TanHParameter {
