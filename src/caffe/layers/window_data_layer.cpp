@@ -11,6 +11,10 @@
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
+#include <opencv2/core/version.hpp>
+#if CV_VERSION_MAJOR >= 3
+#include "opencv2/imgcodecs/legacy/constants_c.h"
+#endif
 
 #include "caffe/data_transformer.hpp"
 #include "caffe/internal_thread.hpp"

@@ -12,6 +12,13 @@
 
 #include "caffe/util/bbox_util.hpp"
 
+#include <opencv2/core/version.hpp>
+#if CV_VERSION_MAJOR >= 3
+#include "opencv2/imgproc/types_c.h"
+#include "opencv2/imgproc/imgproc_c.h"
+#include "opencv2/videoio/legacy/constants_c.h"
+#endif
+
 namespace caffe {
 
 bool SortBBoxAscend(const NormalizedBBox& bbox1, const NormalizedBBox& bbox2) {

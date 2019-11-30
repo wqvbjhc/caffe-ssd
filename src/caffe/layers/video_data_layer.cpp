@@ -2,6 +2,11 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
+#include <opencv2/core/version.hpp>
+#if CV_VERSION_MAJOR >= 3
+#include "opencv2/videoio/legacy/constants_c.h"
+#endif
+
 #include <stdint.h>
 #include <algorithm>
 #include <csignal>

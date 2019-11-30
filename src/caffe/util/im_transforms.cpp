@@ -1,8 +1,10 @@
 #ifdef USE_OPENCV
 #include <opencv2/highgui/highgui.hpp>
+#include <opencv2/core/version.hpp>
 
-#if CV_VERSION_MAJOR == 3
+#if CV_VERSION_MAJOR >= 3
 #include <opencv2/imgcodecs/imgcodecs.hpp>
+#include "opencv2/imgproc/types_c.h"
 #define CV_GRAY2BGR cv::COLOR_GRAY2BGR
 #define CV_BGR2GRAY cv::COLOR_BGR2GRAY
 #define CV_BGR2YCrCb cv::COLOR_BGR2YCrCb
