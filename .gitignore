@@ -102,3 +102,6 @@ MANIFEST-*
 jobs
 temp
 examples/*/*lmdb
+
+# backup file
+*.bak
