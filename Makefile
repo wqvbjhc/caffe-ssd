@@ -178,7 +178,7 @@ ifneq ($(CPU_ONLY), 1)
 	LIBRARIES := cudart cublas curand
 endif
 
-LIBRARIES += glog gflags protobuf boost_system boost_filesystem boost_regex m hdf5_serial_hl hdf5_serial
+LIBRARIES += glog gflags protobuf boost_system boost_filesystem boost_regex m
 
 # handle IO dependencies
 USE_LEVELDB ?= 1
@@ -207,7 +207,6 @@ ifeq ($(USE_OPENCV), 1)
 endif
 PYTHON_LIBRARIES ?= boost_python python2.7
 WARNINGS := -Wall -Wno-sign-compare
-
 ##############################
 # Set build directories
 ##############################
@@ -580,6 +579,7 @@ $(ALL_BUILD_DIRS): | $(BUILD_DIR_LINK)
 
 $(DYNAMIC_NAME): $(OBJS) | $(LIB_BUILD_DIR)
 	@ echo LD -o $@
+	@ echo $(Q)$(CXX) -shared -o $@ $(OBJS) $(VERSIONFLAGS) $(LINKFLAGS) $(LDFLAGS)
 	$(Q)$(CXX) -shared -o $@ $(OBJS) $(VERSIONFLAGS) $(LINKFLAGS) $(LDFLAGS)
 	@ cd $(BUILD_DIR)/lib; rm -f $(DYNAMIC_NAME_SHORT);   ln -s $(DYNAMIC_VERSIONED_NAME_SHORT) $(DYNAMIC_NAME_SHORT)
 
@@ -633,6 +633,8 @@ $(TOOL_BUILD_DIR)/%: $(TOOL_BUILD_DIR)/%.bin | $(TOOL_BUILD_DIR)
 
 $(TOOL_BINS): %.bin : %.o | $(DYNAMIC_NAME)
 	@ echo CXX/LD -o $@
+	@ echo $(Q)$(CXX) $< -o $@ $(LINKFLAGS) -l$(LIBRARY_NAME) $(LDFLAGS) \
+		-Wl,-rpath,$(ORIGIN)/../lib
 	$(Q)$(CXX) $< -o $@ $(LINKFLAGS) -l$(LIBRARY_NAME) $(LDFLAGS) \
 		-Wl,-rpath,$(ORIGIN)/../lib
 

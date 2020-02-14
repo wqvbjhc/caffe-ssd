@@ -13,7 +13,7 @@
 #include "caffe/util/bbox_util.hpp"
 
 #include <opencv2/core/version.hpp>
-#if CV_VERSION_MAJOR >= 3
+#if CV_VERSION_MAJOR >= 4
 #include "opencv2/imgproc/types_c.h"
 #include "opencv2/imgproc/imgproc_c.h"
 #include "opencv2/videoio/legacy/constants_c.h"
