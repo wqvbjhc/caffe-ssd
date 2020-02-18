@@ -117,6 +117,10 @@ void CosinAddmLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
   count_num_back++;
 }
 
+#ifdef CPU_ONLY
+STUB_GPU(CosinAddmLayer);
+#endif
+
 INSTANTIATE_CLASS(CosinAddmLayer);
 REGISTER_LAYER_CLASS(CosinAddm);
 
